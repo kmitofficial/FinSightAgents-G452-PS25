@@ -6,31 +6,30 @@ A multi-agent simulation platform using Large Language Models (LLMs) to explore 
 
 ## 📋 Table of Contents
 
-- [🚀 Project Overview](#project-overview)
-- [✨ Key Features](#key-features)
-- [🏗️ Architecture](#architecture)
-- [🏁 Getting Started](#getting-started)
-- [⚙️ Usage](#usage)
-- [🤝 Contributors](#contributors)
+- [Project Overview](#project-overview)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Contributors](#contributors)
 
 ---
 
 ## Project Overview
 
-**Finsight** aims to build a sophisticated multi-agent system that mimics the actions and behaviors of investors in a virtual stock market. By leveraging Large Language Models, we can create AI agents with diverse profiles and strategies that react to real-world news, policy changes, and market events.
+**Finsight** is a sophisticated multi-agent system that mimics the actions and behaviors of investors in a virtual stock market. By running local Large Language Models, we create AI agents with diverse profiles and strategies that react to real-world news, policy changes, and market events.
 
-The core goal is to uncover emergent patterns in trading behavior and evaluate how various factors influence market outcomes in a controlled environment, free from the data leakage issues that plague traditional backtesting. This platform serves as a powerful research tool for developing smarter investment strategies and enhancing financial decision-making tools.
+The core goal is to uncover emergent patterns in trading behavior and evaluate how various factors influence market outcomes in a controlled environment. This platform serves as a powerful research tool for developing smarter investment strategies and enhancing financial decision-making tools.
 
 ---
 
 ## Key Features
 
-- **Multi-Agent Simulation:** A robust framework that supports diverse investor profiles (e.g., conservative, aggressive) and complex trading strategies.
-- **Dynamic Event Integration:** Incorporates external factors like macroeconomic indicators, policy changes, and global events to influence agent decisions.
-- **Leakage-Free Environment:** A carefully designed system that prevents agents from accessing future data, ensuring the integrity of simulations.
-- **Visualization Dashboard:** An interactive dashboard to monitor trading behaviors, stock price fluctuations, and key agent performance metrics in real-time.
-- **Behavioral Analysis:** Advanced modules to identify patterns and correlations between external events and trading outcomes.
-- **LLM Evaluation:** A flexible architecture for evaluating and comparing the performance of different LLM-based agent configurations.
+- **Local LLM Agent Simulation:** A robust framework supporting diverse investor profiles driven by locally-run LLMs for full control and privacy.
+- **Inter-Agent Communication:** Agents engage in daily discussions, influencing each other's future trading decisions and strategies.
+- **Dynamic News Integration:** A dedicated service fetches and stores external macroeconomic news, which is then provided to the simulation engine to impact market conditions.
+- **Real-Time Visualization Dashboard:** An interactive dashboard to monitor trading behaviors, stock price fluctuations, and key agent performance metrics in real-time via WebSockets.
+- **Secure Authentication:** User access to the dashboard is managed through a JWT-based authentication system.
 
 ---
 
@@ -41,26 +40,26 @@ The core goal is to uncover emergent patterns in trading behavior and evaluate h
 - **Backend Services:** Python (FastAPI), Node.js
 - **Frontend:** Next.js
 - **Database:** MongoDB
-- **LLM API:** Google Gemini API
+- **LLM:** Local LLMs
 - **Containerization:** Docker, Docker Compose
+
+### Architectural Flow
+
+The system operates with a dual-backend architecture. An external service feeds macroeconomic news into a central **MongoDB** database. The **Node.js server** handles user authentication (JWT) and retrieves this news, providing it to the simulation engine while also managing real-time data pushes to the frontend via **WebSockets**.
+
+The **FastAPI server** runs the core market simulation, where **Local LLM Agents** make trading decisions and engage in daily discussions that inform future actions. All agent decisions and simulation data are logged to MongoDB. Finally, the **Next.js** frontend provides a comprehensive dashboard, receiving live updates from the WebSocket server and historical data from the FastAPI server.
 
 ### Diagram
 
-_Once you create your diagram and place it in an `assets` folder, you can use the line below to display it._
-
-![Finsight Architecture Diagram](./assets/Architecture.jpg)
+![Finsight Architecture Diagram](./assets/Architecture.png)
 
 ---
 
 ## Getting Started
 
-_(Instructions on how to install and run the project locally will be added here soon.)_
-
 ---
 
 ## Usage
-
-_(Instructions on how to use the platform and run simulations will be added here soon.)_
 
 ---
 
